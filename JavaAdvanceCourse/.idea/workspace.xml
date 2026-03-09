@@ -2,4 +2,13 @@
 <project version="4">
   <component name="ProjectId" id="3AhyKBes8HBeUgTHbLMm33QZZs5" />
   <component name="PropertiesComponent">{}</component>
+  <component name="RunManager">
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="JavaAdvanceCourse" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.advance.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
 </project>
