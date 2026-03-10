@@ -4,6 +4,7 @@ import com.advance.dto.PageResponse;
 import com.advance.dto.PaymentCardDto;
 import com.advance.entity.PaymentCard;
 import com.advance.entity.User;
+import com.advance.mapper.PaymentCardMapper;
 import com.advance.repository.PaymentCardRepository;
 import com.advance.repository.UserRepository;
 import com.advance.specification.PaymentCardSpecification;
@@ -25,6 +26,7 @@ public class PaymentCardService {
 
     private final PaymentCardRepository paymentCardRepository;
     private final UserRepository userRepository;
+    private final PaymentCardMapper paymentCardMapper;
 
     @Transactional
     public PaymentCardDto create(PaymentCardDto dto) {
@@ -36,20 +38,16 @@ public class PaymentCardService {
             throw new IllegalStateException("User already has " + MAX_CARDS_PER_USER + " cards (maximum reached)");
         }
 
-        PaymentCard card = PaymentCard.builder()
-                .user(user)
-                .number(dto.getNumber())
-                .holder(dto.getHolder())
-                .expirationDate(dto.getExpirationDate())
-                .active(true)
-                .build();
+        PaymentCard card = paymentCardMapper.toEntity(dto);
+        card.setUser(user);
+        card.setActive(true);
 
-        return toDto(paymentCardRepository.save(card));
+        return paymentCardMapper.toDto(paymentCardRepository.save(card));
     }
 
     @Transactional(readOnly = true)
     public PaymentCardDto getById(Long id) {
-        return toDto(findById(id));
+        return paymentCardMapper.toDto(findById(id));
     }
 
     @Transactional(readOnly = true)
@@ -61,7 +59,7 @@ public class PaymentCardService {
         Page<PaymentCard> result = paymentCardRepository.findAll(spec, PageRequest.of(page, size));
 
         return PageResponse.<PaymentCardDto>builder()
-                .content(result.getContent().stream().map(this::toDto).toList())
+                .content(result.getContent().stream().map(paymentCardMapper::toDto).toList())
                 .page(result.getNumber())
                 .size(result.getSize())
                 .totalElements(result.getTotalElements())
@@ -72,16 +70,14 @@ public class PaymentCardService {
     @Transactional(readOnly = true)
     public List<PaymentCardDto> getAllByUserId(Long userId) {
         return paymentCardRepository.findAllByUserId(userId)
-                .stream().map(this::toDto).toList();
+                .stream().map(paymentCardMapper::toDto).toList();
     }
 
     @Transactional
     public PaymentCardDto update(Long id, PaymentCardDto dto) {
         PaymentCard card = findById(id);
-        card.setNumber(dto.getNumber());
-        card.setHolder(dto.getHolder());
-        card.setExpirationDate(dto.getExpirationDate());
-        return toDto(paymentCardRepository.save(card));
+        paymentCardMapper.updateEntity(dto, card);
+        return paymentCardMapper.toDto(paymentCardRepository.save(card));
     }
 
     @Transactional
@@ -93,16 +89,5 @@ public class PaymentCardService {
     private PaymentCard findById(Long id) {
         return paymentCardRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Card not found with id: " + id));
-    }
-
-    private PaymentCardDto toDto(PaymentCard card) {
-        return PaymentCardDto.builder()
-                .id(card.getId())
-                .userId(card.getUser().getId())
-                .number(card.getNumber())
-                .holder(card.getHolder())
-                .expirationDate(card.getExpirationDate())
-                .active(card.getActive())
-                .build();
     }
 }

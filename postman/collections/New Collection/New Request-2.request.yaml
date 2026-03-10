@@ -1,0 +1,14 @@
+$kind: http-request
+name: New Request
+url: http://localhost:8080/api/cards
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "userId": 1,
+        "number": "1234567890123456",
+        "holder": "ANNA IVANOVA",
+        "expirationDate": "2027-12-01"
+    }
+order: 3295866326532768

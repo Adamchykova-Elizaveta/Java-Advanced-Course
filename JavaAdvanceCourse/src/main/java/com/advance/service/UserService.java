@@ -3,6 +3,7 @@ package com.advance.service;
 import com.advance.dto.PageResponse;
 import com.advance.dto.UserDto;
 import com.advance.entity.User;
+import com.advance.mapper.UserMapper;
 import com.advance.repository.UserRepository;
 import com.advance.specification.UserSpecification;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,22 +19,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Transactional
     public UserDto create(UserDto dto) {
-        User user = User.builder()
-                .name(dto.getName())
-                .surname(dto.getSurname())
-                .birthDate(dto.getBirthDate())
-                .email(dto.getEmail())
-                .active(true)
-                .build();
-        return toDto(userRepository.save(user));
+        User user = userMapper.toEntity(dto);
+        user.setActive(true);
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Transactional(readOnly = true)
     public UserDto getById(Long id) {
-        return toDto(findById(id));
+        return userMapper.toDto(findById(id));
     }
 
     @Transactional(readOnly = true)
@@ -46,7 +43,7 @@ public class UserService {
         Page<User> result = userRepository.findAll(spec, PageRequest.of(page, size));
 
         return PageResponse.<UserDto>builder()
-                .content(result.getContent().stream().map(this::toDto).toList())
+                .content(result.getContent().stream().map(userMapper::toDto).toList())
                 .page(result.getNumber())
                 .size(result.getSize())
                 .totalElements(result.getTotalElements())
@@ -57,11 +54,8 @@ public class UserService {
     @Transactional
     public UserDto update(Long id, UserDto dto) {
         User user = findById(id);
-        user.setName(dto.getName());
-        user.setSurname(dto.getSurname());
-        user.setBirthDate(dto.getBirthDate());
-        user.setEmail(dto.getEmail());
-        return toDto(userRepository.save(user));
+        userMapper.updateEntity(dto, user);
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Transactional
@@ -73,16 +67,5 @@ public class UserService {
     private User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
-    }
-
-    private UserDto toDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .name(user.getName())
-                .surname(user.getSurname())
-                .birthDate(user.getBirthDate())
-                .email(user.getEmail())
-                .active(user.getActive())
-                .build();
     }
 }

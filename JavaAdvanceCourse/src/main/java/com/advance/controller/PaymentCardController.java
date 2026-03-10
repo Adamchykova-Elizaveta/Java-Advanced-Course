@@ -3,6 +3,7 @@ package com.advance.controller;
 import com.advance.dto.PageResponse;
 import com.advance.dto.PaymentCardDto;
 import com.advance.service.PaymentCardService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class PaymentCardController {
     private final PaymentCardService paymentCardService;
 
     @PostMapping
-    public ResponseEntity<PaymentCardDto> create(@RequestBody PaymentCardDto dto) {
+    public ResponseEntity<PaymentCardDto> create(@Valid @RequestBody PaymentCardDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentCardService.create(dto));
     }
 
@@ -42,7 +43,7 @@ public class PaymentCardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PaymentCardDto> update(@PathVariable Long id, @RequestBody PaymentCardDto dto) {
+    public ResponseEntity<PaymentCardDto> update(@PathVariable Long id, @Valid @RequestBody PaymentCardDto dto) {
         return ResponseEntity.ok(paymentCardService.update(id, dto));
     }
 
