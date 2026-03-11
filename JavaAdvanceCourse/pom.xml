@@ -18,6 +18,7 @@
     <java.version>17</java.version>
     <postgresql.version>42.7.5</postgresql.version>
     <mapstruct.version>1.5.5.Final</mapstruct.version>
+    <sonar.organization>adamchykova-elizaveta</sonar.organization>
   </properties>
 
   <dependencies>
