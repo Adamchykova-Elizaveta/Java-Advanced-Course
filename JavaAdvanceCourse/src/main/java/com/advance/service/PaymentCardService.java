@@ -30,7 +30,6 @@ public class PaymentCardService {
     private final UserRepository userRepository;
     private final PaymentCardMapper paymentCardMapper;
 
-    // Инвалидируем кэш users_with_cards когда добавляем карту
     @Transactional
     @CacheEvict(value = "users_with_cards", key = "#dto.userId")
     public PaymentCardDto create(PaymentCardDto dto) {
@@ -78,7 +77,6 @@ public class PaymentCardService {
                 .stream().map(paymentCardMapper::toDto).toList();
     }
 
-    // Инвалидируем кэш users_with_cards когда обновляем карту
     @Transactional
     @CacheEvict(value = "users_with_cards", key = "#dto.userId")
     public PaymentCardDto update(Long id, PaymentCardDto dto) {
@@ -87,7 +85,6 @@ public class PaymentCardService {
         return paymentCardMapper.toDto(paymentCardRepository.save(card));
     }
 
-    // Инвалидируем кэш users_with_cards при activate/deactivate карты
     @Transactional
     public void setActiveStatus(Long id, Boolean active) {
         PaymentCard card = findById(id);

@@ -49,7 +49,6 @@ public class UserService {
         return userMapper.toDto(findById(id));
     }
 
-    // Кэш пользователя вместе с картами
     @Transactional(readOnly = true)
     @Cacheable(value = "users_with_cards", key = "#id")
     public UserWithCardsDto getByIdWithCards(Long id) {
@@ -86,7 +85,6 @@ public class UserService {
                 .build();
     }
 
-    // Обновляем кэш после update
     @Transactional
     @CacheEvict(value = "users_with_cards", key = "#id")
     @CachePut(value = "users", key = "#id")
@@ -100,7 +98,6 @@ public class UserService {
         return userMapper.toDto(userRepository.save(user));
     }
 
-    // Инвалидируем оба кэша при activate/deactivate
     @Transactional
     @CacheEvict(value = {"users", "users_with_cards"}, key = "#id")
     public void setActiveStatus(Long id, Boolean active) {
