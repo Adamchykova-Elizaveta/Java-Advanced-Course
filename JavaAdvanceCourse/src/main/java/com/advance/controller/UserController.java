@@ -2,6 +2,7 @@ package com.advance.controller;
 
 import com.advance.dto.PageResponse;
 import com.advance.dto.UserDto;
+import com.advance.dto.UserWithCardsDto;
 import com.advance.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,12 @@ public class UserController {
     public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserDto dto) {
         return ResponseEntity.ok(userService.update(id, dto));
     }
+
+    @GetMapping("/{id}/with-cards")
+    public ResponseEntity<UserWithCardsDto> getByIdWithCards(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getByIdWithCards(id));
+    }
+
 
     @PatchMapping("/{id}/activate")
     public ResponseEntity<Void> activate(@PathVariable Long id) {

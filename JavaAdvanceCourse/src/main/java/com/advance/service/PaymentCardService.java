@@ -11,6 +11,7 @@ import com.advance.repository.PaymentCardRepository;
 import com.advance.repository.UserRepository;
 import com.advance.specification.PaymentCardSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -30,6 +31,7 @@ public class PaymentCardService {
     private final PaymentCardMapper paymentCardMapper;
 
     @Transactional
+    @CacheEvict(value = "users_with_cards", key = "#dto.userId")
     public PaymentCardDto create(PaymentCardDto dto) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User", dto.getUserId()));
@@ -76,6 +78,7 @@ public class PaymentCardService {
     }
 
     @Transactional
+    @CacheEvict(value = "users_with_cards", key = "#dto.userId")
     public PaymentCardDto update(Long id, PaymentCardDto dto) {
         PaymentCard card = findById(id);
         paymentCardMapper.updateEntity(dto, card);
@@ -84,9 +87,13 @@ public class PaymentCardService {
 
     @Transactional
     public void setActiveStatus(Long id, Boolean active) {
-        findById(id);
+        PaymentCard card = findById(id);
         paymentCardRepository.updateActiveStatus(id, active);
+        evictUserWithCardsCache(card.getUser().getId());
     }
+
+    @CacheEvict(value = "users_with_cards", key = "#userId")
+    public void evictUserWithCardsCache(Long userId) {}
 
     private PaymentCard findById(Long id) {
         return paymentCardRepository.findById(id)
