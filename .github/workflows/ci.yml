@@ -71,11 +71,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run Unit Tests
-        run: mvn test -Dtest="com.advance.service.*" -B
-
-      - name: Run Integration Tests
-        run: mvn test -Dtest="com.advance.integration.*" -B
+      - name: Run All Tests
+        run: mvn verify -B
         env:
           SPRING_PROFILES_ACTIVE: local
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testdb
@@ -83,8 +80,6 @@ jobs:
           SPRING_DATASOURCE_PASSWORD: postgres
           SPRING_DATA_REDIS_HOST: localhost
           SPRING_DATA_REDIS_PORT: 6379
-
-      - run: mvn jacoco:report -B
 
       - uses: actions/upload-artifact@v4
         with:
