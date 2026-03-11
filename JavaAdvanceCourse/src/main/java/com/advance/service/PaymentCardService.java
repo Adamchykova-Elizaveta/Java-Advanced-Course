@@ -4,11 +4,12 @@ import com.advance.dto.PageResponse;
 import com.advance.dto.PaymentCardDto;
 import com.advance.entity.PaymentCard;
 import com.advance.entity.User;
+import com.advance.exception.CardLimitExceededException;
+import com.advance.exception.EntityNotFoundException;
 import com.advance.mapper.PaymentCardMapper;
 import com.advance.repository.PaymentCardRepository;
 import com.advance.repository.UserRepository;
 import com.advance.specification.PaymentCardSpecification;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,17 +32,16 @@ public class PaymentCardService {
     @Transactional
     public PaymentCardDto create(PaymentCardDto dto) {
         User user = userRepository.findById(dto.getUserId())
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + dto.getUserId()));
+                .orElseThrow(() -> new EntityNotFoundException("User", dto.getUserId()));
 
         int cardCount = paymentCardRepository.countByUserId(dto.getUserId());
         if (cardCount >= MAX_CARDS_PER_USER) {
-            throw new IllegalStateException("User already has " + MAX_CARDS_PER_USER + " cards (maximum reached)");
+            throw new CardLimitExceededException(dto.getUserId(), MAX_CARDS_PER_USER);
         }
 
         PaymentCard card = paymentCardMapper.toEntity(dto);
         card.setUser(user);
         card.setActive(true);
-
         return paymentCardMapper.toDto(paymentCardRepository.save(card));
     }
 
@@ -69,6 +69,8 @@ public class PaymentCardService {
 
     @Transactional(readOnly = true)
     public List<PaymentCardDto> getAllByUserId(Long userId) {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User", userId));
         return paymentCardRepository.findAllByUserId(userId)
                 .stream().map(paymentCardMapper::toDto).toList();
     }
@@ -88,6 +90,6 @@ public class PaymentCardService {
 
     private PaymentCard findById(Long id) {
         return paymentCardRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Card not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Card", id));
     }
 }

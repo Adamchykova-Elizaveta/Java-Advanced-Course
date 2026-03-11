@@ -3,10 +3,11 @@ package com.advance.service;
 import com.advance.dto.PageResponse;
 import com.advance.dto.UserDto;
 import com.advance.entity.User;
+import com.advance.exception.DuplicateEmailException;
+import com.advance.exception.EntityNotFoundException;
 import com.advance.mapper.UserMapper;
 import com.advance.repository.UserRepository;
 import com.advance.specification.UserSpecification;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +24,9 @@ public class UserService {
 
     @Transactional
     public UserDto create(UserDto dto) {
+        if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new DuplicateEmailException(dto.getEmail());
+        }
         User user = userMapper.toEntity(dto);
         user.setActive(true);
         return userMapper.toDto(userRepository.save(user));
@@ -54,6 +58,10 @@ public class UserService {
     @Transactional
     public UserDto update(Long id, UserDto dto) {
         User user = findById(id);
+        if (!user.getEmail().equals(dto.getEmail()) &&
+                userRepository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new DuplicateEmailException(dto.getEmail());
+        }
         userMapper.updateEntity(dto, user);
         return userMapper.toDto(userRepository.save(user));
     }
@@ -66,6 +74,6 @@ public class UserService {
 
     private User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("User", id));
     }
 }
