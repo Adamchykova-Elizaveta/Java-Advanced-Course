@@ -91,6 +91,32 @@ jobs:
     name: Code Analysis
     runs-on: ubuntu-latest
     needs: test
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -102,21 +128,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: jacoco-report
-          path: JavaAdvanceCourse/target/site/jacoco/
-
-      - run: mvn clean package -DskipTests -B
-
-      - run: |
-          mvn sonar:sonar \
+      - name: Build, Test and Analyze
+        run: |
+          mvn verify sonar:sonar \
             -Dsonar.projectKey=Adamchykova-Elizaveta_Java-Advanced-Course \
             -Dsonar.organization=adamchykova-elizaveta \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -B
         env:
+          SPRING_PROFILES_ACTIVE: local
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testdb
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: postgres
+          SPRING_DATA_REDIS_HOST: localhost
+          SPRING_DATA_REDIS_PORT: 6379
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docker:
