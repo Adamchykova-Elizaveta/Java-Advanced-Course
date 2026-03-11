@@ -1,0 +1,9 @@
+$kind: http-request
+name: New Request
+url: http://localhost:8080/api/users?name=Anna&page=0&size=10
+method: GET
+queryParams:
+  name: Anna
+  page: "0"
+  size: "10"
+order: 3277628490024237

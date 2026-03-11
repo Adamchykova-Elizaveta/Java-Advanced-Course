@@ -1,0 +1,14 @@
+$kind: http-request
+name: http://localhost:8080/api/users
+url: http://localhost:8080/api/users
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "name": "Anna",
+        "surname": "Ivanova",
+        "birthDate": "1995-05-15",
+        "email": "anna@gmail.com"
+    }
+order: 4354677973447842
