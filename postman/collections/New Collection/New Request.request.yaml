@@ -1,0 +1,5 @@
+$kind: http-request
+name: New Request
+url: http://localhost:8080/api/users/1
+method: GET
+order: 1773129932704
