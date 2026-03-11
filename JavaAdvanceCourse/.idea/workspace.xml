@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4b05eaa-6818-4c65-87bc-ea4f273b085d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/advance/config/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/advance/dto/UserWithCardsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/advance/integration/BaseIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/advance/integration/PaymentCardControllerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/advance/integration/UserControllerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/advance/service/PaymentCardServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/advance/service/UserServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/advance/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/PaymentCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/advance/service/PaymentCardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/advance/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +57,10 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.MyApplication.executor": "Run",
-    "git-widget-placeholder": "redis__caching",
+    "git-widget-placeholder": "tests",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
