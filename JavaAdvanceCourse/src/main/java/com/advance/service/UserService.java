@@ -86,8 +86,6 @@ public class UserService {
     }
 
     @Transactional
-    @CacheEvict(value = "users_with_cards", key = "#id")
-    @CachePut(value = "users", key = "#id")
     public UserDto update(Long id, UserDto dto) {
         User user = findById(id);
         if (!user.getEmail().equals(dto.getEmail()) &&
@@ -95,8 +93,13 @@ public class UserService {
             throw new DuplicateEmailException(dto.getEmail());
         }
         userMapper.updateEntity(dto, user);
-        return userMapper.toDto(userRepository.save(user));
+        User saved = userRepository.save(user);
+        evictUserWithCardsCache(saved.getId());
+        return userMapper.toDto(saved);
     }
+
+    @CacheEvict(value = "users_with_cards", key = "#id")
+    public void evictUserWithCardsCache(Long id) {}
 
     @Transactional
     @CacheEvict(value = {"users", "users_with_cards"}, key = "#id")

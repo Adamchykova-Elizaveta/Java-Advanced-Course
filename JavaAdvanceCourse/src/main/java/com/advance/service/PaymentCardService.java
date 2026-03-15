@@ -36,7 +36,7 @@ public class PaymentCardService {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User", dto.getUserId()));
 
-        int cardCount = paymentCardRepository.countByUserId(dto.getUserId());
+        int cardCount = paymentCardRepository.countByUserIdAndActiveTrue(dto.getUserId());
         if (cardCount >= MAX_CARDS_PER_USER) {
             throw new CardLimitExceededException(dto.getUserId(), MAX_CARDS_PER_USER);
         }
@@ -78,11 +78,12 @@ public class PaymentCardService {
     }
 
     @Transactional
-    @CacheEvict(value = "users_with_cards", key = "#dto.userId")
     public PaymentCardDto update(Long id, PaymentCardDto dto) {
         PaymentCard card = findById(id);
         paymentCardMapper.updateEntity(dto, card);
-        return paymentCardMapper.toDto(paymentCardRepository.save(card));
+        PaymentCard saved = paymentCardRepository.save(card);
+        evictUserWithCardsCache(saved.getUser().getId());
+        return paymentCardMapper.toDto(saved);
     }
 
     @Transactional
