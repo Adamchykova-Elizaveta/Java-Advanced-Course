@@ -7,5 +7,5 @@
 
     <include file="db/changelog/changes/001-create-users-table.xml"/>
     <include file="db/changelog/changes/002-create-payment-cards-table.xml"/>
-
+    <include file="db/changelog/changes/003-create-credentials-table.xml"/>
 </databaseChangeLog>

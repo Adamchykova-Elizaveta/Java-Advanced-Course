@@ -13,3 +13,8 @@ spring:
     redis:
       host: localhost
       port: 6379
+
+jwt:
+  secret: "local-secret-key-must-be-at-least-256-bits-long-here!!"
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000

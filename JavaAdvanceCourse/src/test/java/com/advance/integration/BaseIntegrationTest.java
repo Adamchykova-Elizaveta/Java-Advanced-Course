@@ -1,17 +1,29 @@
 package com.advance.integration;
 
+import com.advance.entity.Role;
+import com.advance.service.JwtService;
 import com.redis.testcontainers.RedisContainer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Testcontainers
+@ActiveProfiles("test")
 public abstract class BaseIntegrationTest {
+
+    @Autowired
+    protected JwtService jwtService;
+
+    protected String adminToken;
+    protected String userToken;
 
     static final PostgreSQLContainer<?> postgres;
     static final RedisContainer redis;
@@ -35,5 +47,10 @@ public abstract class BaseIntegrationTest {
         registry.add("spring.datasource.password", postgres::getPassword);
         registry.add("spring.data.redis.host", redis::getHost);
         registry.add("spring.data.redis.port", redis::getFirstMappedPort);
+    }
+
+    protected void initTokens() {
+        adminToken = "Bearer " + jwtService.generateAccessToken(1L, Role.ADMIN);
+        userToken = "Bearer " + jwtService.generateAccessToken(2L, Role.USER);
     }
 }
