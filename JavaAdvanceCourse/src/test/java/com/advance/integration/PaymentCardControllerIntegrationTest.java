@@ -38,6 +38,7 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
         String response = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
+                .andExpect(status().isCreated())  // ← добавить чтобы видеть реальную ошибку
                 .andReturn().getResponse().getContentAsString();
 
         userId = objectMapper.readTree(response).get("id").asLong();

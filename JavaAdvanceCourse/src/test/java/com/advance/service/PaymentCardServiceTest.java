@@ -70,7 +70,7 @@ class PaymentCardServiceTest {
     @Test
     void create_ShouldReturnCardDto_WhenUnderLimit() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(paymentCardRepository.countByUserId(1L)).thenReturn(2);
+        when(paymentCardRepository.countByUserIdAndActiveTrue(1L)).thenReturn(2);  // ← исправить
         when(paymentCardMapper.toEntity(any())).thenReturn(card);
         when(paymentCardRepository.save(any())).thenReturn(card);
         when(paymentCardMapper.toDto(any())).thenReturn(cardDto);
@@ -85,7 +85,7 @@ class PaymentCardServiceTest {
     @Test
     void create_ShouldThrowCardLimitExceededException_WhenLimitReached() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(paymentCardRepository.countByUserId(1L)).thenReturn(5);
+        when(paymentCardRepository.countByUserIdAndActiveTrue(1L)).thenReturn(5);  // ← исправить
 
         assertThatThrownBy(() -> paymentCardService.create(cardDto))
                 .isInstanceOf(CardLimitExceededException.class)
