@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -23,7 +22,6 @@ public abstract class BaseIntegrationTest {
     protected JwtService jwtService;
 
     protected String adminToken;
-    protected String userToken;
 
     static final PostgreSQLContainer<?> postgres;
     static final RedisContainer redis;
@@ -33,9 +31,7 @@ public abstract class BaseIntegrationTest {
                 .withDatabaseName("testdb")
                 .withUsername("postgres")
                 .withPassword("postgres");
-
         redis = new RedisContainer("redis:7");
-
         postgres.start();
         redis.start();
     }
@@ -51,6 +47,5 @@ public abstract class BaseIntegrationTest {
 
     protected void initTokens() {
         adminToken = "Bearer " + jwtService.generateAccessToken(1L, Role.ADMIN);
-        userToken = "Bearer " + jwtService.generateAccessToken(2L, Role.USER);
     }
 }

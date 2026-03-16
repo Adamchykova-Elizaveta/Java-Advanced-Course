@@ -23,6 +23,7 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
 
     @BeforeEach
     void cleanDb() {
+        initTokens();
         jdbcTemplate.execute("DELETE FROM payment_cards");
         jdbcTemplate.execute("DELETE FROM users");
     }
@@ -39,6 +40,7 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void createUser_ShouldReturn201_WhenValidRequest() throws Exception {
         mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andExpect(status().isCreated())
@@ -51,10 +53,12 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void createUser_ShouldReturn409_WhenEmailAlreadyExists() throws Exception {
         mockMvc.perform(post("/api/users")
+                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))));
 
         mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andExpect(status().isConflict())
@@ -67,6 +71,7 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
         UserDto invalid = UserDto.builder().name("").email("not-email").build();
 
         mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalid)))
                 .andExpect(status().isBadRequest())
@@ -76,13 +81,15 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void getById_ShouldReturn200_WhenUserExists() throws Exception {
         String response = mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andReturn().getResponse().getContentAsString();
 
         Long id = objectMapper.readTree(response).get("id").asLong();
 
-        mockMvc.perform(get("/api/users/{id}", id))
+        mockMvc.perform(get("/api/users/{id}", id)
+                        .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.name").value("Anna"));
@@ -90,7 +97,8 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void getById_ShouldReturn404_WhenUserNotFound() throws Exception {
-        mockMvc.perform(get("/api/users/99999"))
+        mockMvc.perform(get("/api/users/99999")
+                        .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status").value(404));
     }
@@ -98,13 +106,16 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void getAll_ShouldReturn200_WithPagination() throws Exception {
         mockMvc.perform(post("/api/users")
+                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))));
         mockMvc.perform(post("/api/users")
+                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildUserDto("kate@gmail.com"))));
 
-        mockMvc.perform(get("/api/users?page=0&size=10"))
+        mockMvc.perform(get("/api/users?page=0&size=10")
+                        .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content", hasSize(2)))
                 .andExpect(jsonPath("$.totalElements").value(2));
@@ -113,10 +124,12 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void getAll_ShouldFilterByName() throws Exception {
         mockMvc.perform(post("/api/users")
+                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))));
 
-        mockMvc.perform(get("/api/users?name=Anna&page=0&size=10"))
+        mockMvc.perform(get("/api/users?name=Anna&page=0&size=10")
+                        .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].name").value("Anna"));
     }
@@ -124,6 +137,7 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void update_ShouldReturn200_WhenUserExists() throws Exception {
         String response = mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andReturn().getResponse().getContentAsString();
@@ -133,6 +147,7 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
         updated.setSurname("Petrova");
 
         mockMvc.perform(put("/api/users/{id}", id)
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updated)))
                 .andExpect(status().isOk())
@@ -142,29 +157,34 @@ class UserControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void deactivate_ShouldReturn204_WhenUserExists() throws Exception {
         String response = mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andReturn().getResponse().getContentAsString();
 
         Long id = objectMapper.readTree(response).get("id").asLong();
 
-        mockMvc.perform(patch("/api/users/{id}/deactivate", id))
+        mockMvc.perform(patch("/api/users/{id}/deactivate", id)
+                        .header("Authorization", adminToken))
                 .andExpect(status().isNoContent());
 
-        mockMvc.perform(get("/api/users/{id}", id))
+        mockMvc.perform(get("/api/users/{id}", id)
+                        .header("Authorization", adminToken))
                 .andExpect(jsonPath("$.active").value(false));
     }
 
     @Test
     void getWithCards_ShouldReturnUserWithEmptyCards() throws Exception {
         String response = mockMvc.perform(post("/api/users")
+                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildUserDto("anna@gmail.com"))))
                 .andReturn().getResponse().getContentAsString();
 
         Long id = objectMapper.readTree(response).get("id").asLong();
 
-        mockMvc.perform(get("/api/users/{id}/with-cards", id))
+        mockMvc.perform(get("/api/users/{id}/with-cards", id)
+                        .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.cards", hasSize(0)));
