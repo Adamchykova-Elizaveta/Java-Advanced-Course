@@ -78,12 +78,11 @@ public class PaymentCardService {
     }
 
     @Transactional
+    @CacheEvict(value = "users_with_cards", key = "#result.userId")
     public PaymentCardDto update(Long id, PaymentCardDto dto) {
         PaymentCard card = findById(id);
         paymentCardMapper.updateEntity(dto, card);
-        PaymentCard saved = paymentCardRepository.save(card);
-        evictUserWithCardsCache(saved.getUser().getId());
-        return paymentCardMapper.toDto(saved);
+        return paymentCardMapper.toDto(paymentCardRepository.save(card));
     }
 
     @Transactional
