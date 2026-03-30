@@ -21,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="redis_caching" />
+        <entry key="$PROJECT_DIR$/.." value="security" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -30,6 +30,9 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -41,6 +44,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< security
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.MyApplication.executor": "Run",
+    "git-widget-placeholder": "security",
+    "last_opened_file_path": "/Users/elizavetabaranova/Java-Advanced-Course/JavaAdvanceCourse",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "vue.rearranger.settings.migration": "true"
+=======
+>>>>>>> 56f6da690e27181cf3af90f69e6655e5ce7e5336
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
@@ -53,8 +82,12 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.MyApplication.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;security&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/elizavetabaranova/Java-Advanced-Course/JavaAdvanceCourse&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;ci__pipeline&quot;,
+>>>>>>> 56f6da690e27181cf3af90f69e6655e5ce7e5336
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -62,6 +95,10 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> 56f6da690e27181cf3af90f69e6655e5ce7e5336
   }
 }</component>
   <component name="RecentsManager">
@@ -94,12 +131,36 @@
       <option name="presentableId" value="Default" />
       <updated>1773059032405</updated>
       <workItem from="1773059033395" duration="5235000" />
+<<<<<<< HEAD
       <workItem from="1774878159584" duration="2672000" />
+=======
+<<<<<<< security
+      <workItem from="1774878159584" duration="2028000" />
+=======
+      <workItem from="1773232122630" duration="2158000" />
+      <workItem from="1773234430405" duration="1227000" />
+      <workItem from="1773304038621" duration="6074000" />
+      <workItem from="1773602481497" duration="56000" />
+      <workItem from="1773602695716" duration="1914000" />
+      <workItem from="1773644067196" duration="1223000" />
+>>>>>>> master
+>>>>>>> 56f6da690e27181cf3af90f69e6655e5ce7e5336
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

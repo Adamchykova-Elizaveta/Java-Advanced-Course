@@ -2,6 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+<<<<<<< security
     show-sql: false
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
@@ -11,3 +12,11 @@ jwt:
   secret: ${JWT_SECRET:test-secret-key-must-be-at-least-256-bits-long-here!!}
   access-token-expiration: 900000
   refresh-token-expiration: 604800000
+=======
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+>>>>>>> master

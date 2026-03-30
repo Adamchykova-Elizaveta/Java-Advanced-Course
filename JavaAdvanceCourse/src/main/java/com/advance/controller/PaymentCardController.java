@@ -58,4 +58,10 @@ public class PaymentCardController {
         paymentCardService.setActiveStatus(id, false);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        paymentCardService.setActiveStatus(id, false);
+        return ResponseEntity.noContent().build();
+    }
 }
