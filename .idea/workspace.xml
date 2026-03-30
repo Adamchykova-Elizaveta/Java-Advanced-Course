@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b9ede3f7-d6f2-4490-a8b7-8a14a7a8a25b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/JavaAdvanceCourse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaAdvanceCourse/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaAdvanceCourse/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaAdvanceCourse/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaAdvanceCourse/src/main/java/com/advance/exception/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaAdvanceCourse/src/main/java/com/advance/exception/EntityNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaAdvanceCourse/src/main/java/com/advance/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaAdvanceCourse/src/main/java/com/advance/exception/ErrorResponse.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="3AnhhM41LGNHMzn2NIUQHyQXwlf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "ci__pipeline",
+    "last_opened_file_path": "/Users/elizavetabaranova/Java-Advanced-Course",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9ede3f7-d6f2-4490-a8b7-8a14a7a8a25b" name="Changes" comment="" />
+      <created>1773234359793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773234359793</updated>
+      <workItem from="1773234361157" duration="63000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

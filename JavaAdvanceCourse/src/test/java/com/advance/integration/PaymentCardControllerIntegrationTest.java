@@ -40,7 +40,11 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
                         .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
+<<<<<<< security
                 .andExpect(status().isCreated())
+=======
+                .andExpect(status().isCreated())  // ← добавить чтобы видеть реальную ошибку
+>>>>>>> master
                 .andReturn().getResponse().getContentAsString();
 
         userId = objectMapper.readTree(response).get("id").asLong();
