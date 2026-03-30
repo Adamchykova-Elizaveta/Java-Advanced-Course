@@ -1,5 +1,245 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4b05eaa-6818-4c65-87bc-ea4f273b085d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/db/changelog/changes/001-create-credentials-table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/CardLimitExceededException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/DuplicateEmailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/SecurityExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/security/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/db/changelog/changes/001-create-users-table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/db/changelog/changes/002-create-payment-cards-table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/MyApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/config/JwtAuthFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/controller/PaymentCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/controller/PaymentCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/dto/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/dto/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/CredentialsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/dto/CredentialsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/PageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/dto/PageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/PaymentCardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/dto/PaymentCardDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/TokenRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/dto/TokenRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/dto/UserWithCardsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/dto/UserWithCardsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/entity/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/entity/Credentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/entity/PaymentCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/entity/PaymentCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/CardLimitExceededException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/CardLimitExceededException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/DuplicateEmailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/DuplicateEmailException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/EntityNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/exception/SecurityExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/exception/SecurityExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/mapper/PaymentCardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/mapper/PaymentCardMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/repository/CredentialsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/repository/CredentialsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/repository/PaymentCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/repository/PaymentCardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/advance/auth/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/PaymentCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/service/PaymentCardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/specification/PaymentCardSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/specification/PaymentCardSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/advance/specification/UserSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/advance/user/specification/UserSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application-test.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/001-create-users-table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/002-create-payment-cards-table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/003-create-credentials-table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/integration/BaseIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/advance/authservice/integration/BaseIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/integration/PaymentCardControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/advance/integration/PaymentCardControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/integration/UserControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/advance/integration/UserControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/service/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/advance/authservice/service/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/service/PaymentCardServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/advance/service/PaymentCardServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/advance/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/advance/service/UserServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth-service" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="redis_caching" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="3AhyKBes8HBeUgTHbLMm33QZZs5" />
-  <component name="PropertiesComponent">{}</component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
+    "Spring Boot.MyApplication.executor": "Run",
+    "git-widget-placeholder": "microservices-security",
+    "last_opened_file_path": "/Users/elizavetabaranova/Java-Advanced-Course/JavaAdvanceCourse/user-service/src/test/java/com/advance",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service/src/test/java/com/advance" />
+      <recent name="$PROJECT_DIR$/user-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/user-service/src/main/java/com/advance" />
+      <recent name="$PROJECT_DIR$/auth-service/src/main/java/com/advance" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service" />
+      <recent name="$PROJECT_DIR$/user-service/src/test" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="auth-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.advance.auth.AuthServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.advance.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="JavaAdvanceCourse" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.advance.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AuthServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4b05eaa-6818-4c65-87bc-ea4f273b085d" name="Changes" comment="" />
+      <created>1773059032405</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773059032405</updated>
+      <workItem from="1773059033395" duration="5235000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/advance/entity/User.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>
