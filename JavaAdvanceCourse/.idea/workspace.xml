@@ -5,7 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4b05eaa-6818-4c65-87bc-ea4f273b085d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/config/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/dto/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/dto/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/dto/CredentialsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/dto/TokenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/entity/Credentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/CardLimitExceededException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/DuplicateEmailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/exception/SecurityExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/repository/CredentialsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/java/com/advance/authservice/service/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application-docker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/db/changelog/changes/003-create-credentials-table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-service/src/test/java/com/advance/authservice/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +87,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.MyApplication.executor": "Run",
     "git-widget-placeholder": "security",
+    "last_opened_file_path": "/Users/elizavetabaranova/Java-Advanced-Course/JavaAdvanceCourse",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -95,6 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1773059032405</updated>
       <workItem from="1773059033395" duration="5235000" />
+      <workItem from="1774878159584" duration="2028000" />
     </task>
     <servers />
   </component>
