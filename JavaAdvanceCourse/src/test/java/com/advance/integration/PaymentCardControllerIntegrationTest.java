@@ -26,7 +26,6 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        initTokens();
         jdbcTemplate.execute("DELETE FROM payment_cards");
         jdbcTemplate.execute("DELETE FROM users");
 
@@ -37,10 +36,9 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
                 .build();
 
         String response = mockMvc.perform(post("/api/users")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
-                .andExpect(status().isCreated())
+                .andExpect(status().isCreated())  // ← добавить чтобы видеть реальную ошибку
                 .andReturn().getResponse().getContentAsString();
 
         userId = objectMapper.readTree(response).get("id").asLong();
@@ -58,7 +56,6 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void createCard_ShouldReturn201_WhenValidRequest() throws Exception {
         mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildCardDto("1234567890123456"))))
                 .andExpect(status().isCreated())
@@ -72,13 +69,11 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
         for (int i = 0; i < 5; i++) {
             String number = String.format("123456789012345%d", i);
             mockMvc.perform(post("/api/cards")
-                    .header("Authorization", adminToken)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(buildCardDto(number))));
         }
 
         mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildCardDto("1234567890123459"))))
                 .andExpect(status().isBadRequest())
@@ -91,7 +86,6 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
         dto.setUserId(99999L);
 
         mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isNotFound());
@@ -100,23 +94,20 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void getById_ShouldReturn200_WhenCardExists() throws Exception {
         String response = mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildCardDto("1234567890123456"))))
                 .andReturn().getResponse().getContentAsString();
 
         Long cardId = objectMapper.readTree(response).get("id").asLong();
 
-        mockMvc.perform(get("/api/cards/{id}", cardId)
-                        .header("Authorization", adminToken))
+        mockMvc.perform(get("/api/cards/{id}", cardId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(cardId));
     }
 
     @Test
     void getById_ShouldReturn404_WhenCardNotFound() throws Exception {
-        mockMvc.perform(get("/api/cards/99999")
-                        .header("Authorization", adminToken))
+        mockMvc.perform(get("/api/cards/99999"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status").value(404));
     }
@@ -124,16 +115,13 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void getAllByUserId_ShouldReturnCards() throws Exception {
         mockMvc.perform(post("/api/cards")
-                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildCardDto("1234567890123456"))));
         mockMvc.perform(post("/api/cards")
-                .header("Authorization", adminToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(buildCardDto("6543210987654321"))));
 
-        mockMvc.perform(get("/api/cards/user/{userId}", userId)
-                        .header("Authorization", adminToken))
+        mockMvc.perform(get("/api/cards/user/{userId}", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
     }
@@ -141,7 +129,6 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void update_ShouldReturn200_WhenCardExists() throws Exception {
         String response = mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildCardDto("1234567890123456"))))
                 .andReturn().getResponse().getContentAsString();
@@ -151,7 +138,6 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
         updated.setHolder("UPDATED NAME");
 
         mockMvc.perform(put("/api/cards/{id}", cardId)
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updated)))
                 .andExpect(status().isOk())
@@ -161,19 +147,16 @@ class PaymentCardControllerIntegrationTest extends BaseIntegrationTest {
     @Test
     void deactivate_ShouldReturn204_AndCardIsDeactivated() throws Exception {
         String response = mockMvc.perform(post("/api/cards")
-                        .header("Authorization", adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(buildCardDto("1234567890123456"))))
                 .andReturn().getResponse().getContentAsString();
 
         Long cardId = objectMapper.readTree(response).get("id").asLong();
 
-        mockMvc.perform(patch("/api/cards/{id}/deactivate", cardId)
-                        .header("Authorization", adminToken))
+        mockMvc.perform(patch("/api/cards/{id}/deactivate", cardId))
                 .andExpect(status().isNoContent());
 
-        mockMvc.perform(get("/api/cards/{id}", cardId)
-                        .header("Authorization", adminToken))
+        mockMvc.perform(get("/api/cards/{id}", cardId))
                 .andExpect(jsonPath("$.active").value(false));
     }
 }
