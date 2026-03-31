@@ -1,4 +1,4 @@
-package com.advance.authservice;
+package com.advance.authservice.service;
 
 import com.advance.authservice.dto.AuthRequest;
 import com.advance.authservice.dto.AuthResponse;
@@ -7,8 +7,6 @@ import com.advance.authservice.entity.Credentials;
 import com.advance.authservice.entity.Role;
 import com.advance.authservice.exception.EntityNotFoundException;
 import com.advance.authservice.repository.CredentialsRepository;
-import com.advance.authservice.service.AuthService;
-import com.advance.authservice.service.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,11 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AuthServiceTest {
@@ -68,6 +64,8 @@ class AuthServiceTest {
         assertThatThrownBy(() -> authService.saveCredentials(dto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Login already exists");
+
+        verify(credentialsRepository, never()).save(any());
     }
 
     @Test
@@ -80,6 +78,8 @@ class AuthServiceTest {
         assertThatThrownBy(() -> authService.saveCredentials(dto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Credentials already exist");
+
+        verify(credentialsRepository, never()).save(any());
     }
 
     @Test
@@ -124,6 +124,7 @@ class AuthServiceTest {
         AuthResponse response = authService.refresh("refresh_token");
 
         assertThat(response.getAccessToken()).isEqualTo("new_access");
+        assertThat(response.getRefreshToken()).isEqualTo("new_refresh");
     }
 
     @Test
@@ -138,12 +139,14 @@ class AuthServiceTest {
     @Test
     void validateToken_ShouldReturnTrue_WhenTokenValid() {
         when(jwtService.isTokenValid("valid_token")).thenReturn(true);
+
         assertThat(authService.validateToken("valid_token")).isTrue();
     }
 
     @Test
     void validateToken_ShouldReturnFalse_WhenTokenInvalid() {
         when(jwtService.isTokenValid("bad_token")).thenReturn(false);
+
         assertThat(authService.validateToken("bad_token")).isFalse();
     }
 }
