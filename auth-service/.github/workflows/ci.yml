@@ -24,12 +24,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - run: mvn clean package -DskipTests -B
+      - run: mvn clean package -pl auth-service -am -DskipTests -B
 
       - uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: JavaAdvanceCourse/target/*.jar
+          path: auth-service/target/*.jar
           retention-days: 1
 
   test:
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: JavaAdvanceCourse/target/site/jacoco/
+          path: target/site/jacoco/
           retention-days: 7
 
   sonar:
@@ -110,9 +110,9 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: jacoco-report
-          path: JavaAdvanceCourse/target/site/jacoco/
+          path: target/site/jacoco/
 
-      - run: mvn clean package -DskipTests -B
+      - run: mvn clean package -pl auth-service -am -DskipTests -B
 
       - run: |
           mvn sonar:sonar \
@@ -134,7 +134,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: app-jar
-          path: JavaAdvanceCourse/target/
+          path: auth-service/target/
 
       - uses: docker/setup-buildx-action@v3
 
